@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des étudiants</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-section">
+            <h1>Ajouter Etudiant</h1>
+            <form id="studentForm">
+                <label for="firstName">Prénom :</label>
+                <input type="text" id="firstName" placeholder="Prénom" required>
+                <label for="lastName">Nom :</label>
+                <input type="text" id="lastName" placeholder="Nom" required>
+                <label for="Age">Age :</label>
+                <input type="number" name="Age" id="Age" placeholder="Age">
+                <label for="Sex">Sexe :</label>
+                <select id="Sex">
+                    <option value="Masculin">Masculin</option>
+                    <option value="Femin">Femin</option>
+                </select>
+                <label for="date">Date de Naissance :</label>
+                <input type="date" name="date" id="date" placeholder="Date de Naissance">
+                <label for="eml">Email :</label>
+                <input type="email" name="eml" id="eml" placeholder="Email">
+                <label for="msg">Adresse :</label>
+                <textarea name="msg" id="msg">
+                </textarea>
+            </form>
+            <button type="submit" id="submitBtn" onclick="Ajouter()">Ajouter</button>
+        </div>
+        <div class="table-section" id="size">
+            <table id="studentsTable">
+                <h1>Liste des Etudiant</h1>
+                <thead>
+                    <tr>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Age</th>
+                        <th>Sexe</th>
+                        <th>Date de Naissance</th>
+                        <th>Email</th>
+                        <th>Adresse</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <script src="programme.js"></script>
+</body>
+
+</html>

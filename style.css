@@ -1,0 +1,107 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-transform: capitalize;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.form-section,.table-section{
+    width: 23%;
+    height: 85%;
+    background-color: white;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.34);
+    border-radius: 10px;
+    padding: 2vw;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+
+h1{
+    font-size: 1.5vw;
+    font-weight: 900;
+}
+
+.form-section form{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 1.5vh;
+}
+
+.form-section form label,input,select,textarea{
+    width: 100%;
+}
+
+.form-section input{
+    height: 2vh;
+    padding: 0.5vw;
+}
+
+.form-section select{
+    height: 5vh;
+    padding: 0.3vw;
+}
+
+.form-section textarea{
+    resize: none;
+    height: 10vh;
+}
+
+.form-section button{
+    width: 100%;
+    height: 5vh;
+    margin-top: auto;
+}
+#size{
+    width: 65%;
+    overflow-y: scroll;
+}
+
+#size::-webkit-scrollbar{
+    display: none;
+}
+
+#studentsTable{
+    width: 100%;
+    height: 10%;
+    margin-top: 2vh;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.123);
+}
+
+thead{
+    height: 3.5vh;
+    background-color: rgb(233, 233, 233);
+    font-weight: 900;
+}
+
+td{
+    height: 5vh;
+    text-align: center;
+}
+td button{
+    width: 2vw;
+    height: 5vh;
+    border : 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+td button:first-child{
+    color: rgb(2, 221, 2);
+    font-size: 1.3vw;
+}
+
+td button:last-child{
+    color: red;
+    font-size: 1.2vw;
+}
