@@ -12,7 +12,7 @@ function Ajouter() {
             textarea_adresse.style.border = '1px solid red';
             valide = false;
         }
-        else if(parseInt(All_input[2].value) < 14 || parseInt(All_input[2].value) > 24){
+        else if (parseInt(All_input[2].value) < 14 || parseInt(All_input[2].value) > 24) {
             alert(`Votre Age ${All_input[2].value} doit être compris entre 14 et 24 ans.`)
             valide = false
         }
@@ -44,20 +44,46 @@ function Ajouter() {
             <td>${info.Email}</td>
             <td>${info.Adresse}</td>
             <td>
-            <button onclick="Modifier()"><i class='bx bx-refresh'></i></button>
+            <button onclick="Modifier(this)"><i class='bx bx-refresh'></i></button>
             <button onclick="Suprimmer(this)"><i class='bx bxs-trash-alt' ></i></button>
             </td>
         `;
         content.appendChild(row);
-        All_input[0].value = "";
-        All_input[1].value = "";
-        All_input[2].value = "";
-        All_input[3].value = "";
-        All_input[4].value = "";
+        All_input.forEach(element => {
+            element.value = ""
+        })
         textarea_adresse.value = "";
     }
 }
 
 function Suprimmer(x) {
     x.parentNode.parentNode.remove()
+}
+
+function Modifier(y) {
+    var colms = y.parentNode.parentNode.cells;
+    All_input[0].value = colms[0].textContent;
+    All_input[1].value = colms[1].textContent;
+    All_input[2].value = colms[2].textContent;
+    Select_sexe.value = colms[3].textContent;
+    All_input[3].value = colms[4].textContent;
+    All_input[4].value = colms[5].textContent;
+    textarea_adresse.value = colms[6].textContent;
+
+    let button = document.getElementById('submitBtn')
+    button.innerText = 'modifier'
+    button.removeEventListener('click',Ajouter);
+
+    button.addEventListener('click', function () {
+        colms[0].textContent = All_input[0].value;
+        colms[1].textContent = All_input[1].value;
+        colms[2].textContent = All_input[2].value;
+        colms[3].textContent = Select_sexe.value;
+        colms[4].textContent = All_input[3].value;
+        colms[5].textContent = All_input[4].value;
+        colms[6].textContent = textarea_adresse.value;
+        button.innerText = 'Ajouter'
+        
+        button.addEventListener('click',Ajouter);
+    })
 }
