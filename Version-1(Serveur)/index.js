@@ -223,14 +223,34 @@ tr_1.appendChild(th_email);
 tr_1.appendChild(th_adresse);
 tr_1.appendChild(th_Actions);
 
-div_card_2.appendChild(div_card_2_tittle)
-div_card_2.appendChild(table)
+div_card_2.appendChild(div_card_2_tittle);
+div_card_2.appendChild(table);
 
 //Append-Balise-Body
 body.appendChild(section);
 section.appendChild(div_card_1);
 section.appendChild(div_card_2);
 
+//Default-Information
+function user(){
+    const tr_user = document.createElement('tr');
+    tr_user.innerHTML =
+        `
+    <td class="p-2 text-center">Ahmed</td>
+    <td class="p-2 text-center">Hariri</td>
+    <td class="p-2 text-center">18</td>
+    <td class="p-2 text-center">Masculin</td>
+    <td class="p-2 text-center">01/05/2006</td>
+    <td class="p-2 text-center">AhmedHariri58@gmail.com</td>
+    <td class="p-2 text-center">Rabat</td>
+    <td class="p-2 text-center flex justify-center items-center gap-2">
+    <i class='bx bxs-edit-alt cursor-pointer scale-125 text-green-500''></i>
+    <i class='bx bx-x cursor-pointer scale-150 text-red-500''></i>
+    </td>
+    `
+    table.appendChild(tr_user);
+}
+user();
 
 //Function-Ajouter
 function Ajouter() {
@@ -239,7 +259,7 @@ function Ajouter() {
     //infromation-1
     if (input_prenom.value.trim() == '') {
         input_prenom.style.border = '1px solid red';
-        valide = false
+        valide = false;
     }
     else {
         input_prenom.style.border = '';
@@ -247,16 +267,16 @@ function Ajouter() {
     //infromation-2
     if (input_nom.value.trim() == '') {
         input_nom.style.border = '1px solid red';
-        valide = false
+        valide = false;
     }
     else {
         input_nom.style.border = '';
     }
     //infromation-3
-    if (input_age.value.trim() == ''|| input_age.value < 18 ) {
+    if (input_age.value.trim() == '' || input_age.value < 18) {
         input_age.style.border = '1px solid red';
-        alert('vous etes mineur');
-        valide = false
+        alert('Vous etes Mineur');
+        valide = false;
     }
     else {
         input_age.style.border = '';
@@ -264,7 +284,7 @@ function Ajouter() {
     //infromation-5
     if (input_date.value.trim() == '') {
         input_date.style.border = '1px solid red';
-        valide = false
+        valide = false;
     }
     else {
         input_date.style.border = '';
@@ -272,7 +292,7 @@ function Ajouter() {
     //infromation-6
     if (input_email.value.trim() == '') {
         input_email.style.border = '1px solid red';
-        valide = false
+        valide = false;
     }
     else {
         input_email.style.border = '';
@@ -280,13 +300,13 @@ function Ajouter() {
     //infromation-7
     if (textarea_adresse.value.trim() == '') {
         textarea_adresse.style.border = '1px solid red';
-        valide = false
+        valide = false;
     }
     else {
         textarea_adresse.style.border = '';
     }
     if (!valide) {
-        window.alert('Remplir les informations')
+        window.alert('Remplir les informations');
     }
     else {
         const Information = {
@@ -297,8 +317,8 @@ function Ajouter() {
             Date: input_date.value,
             Email: input_email.value,
             Adresse: textarea_adresse.value,
-        }
-        const tr_2 = document.createElement('tr')
+        };
+        const tr_2 = document.createElement('tr');
         tr_2.innerHTML =
             `
         <td class="p-2 text-center">${Information.Prenom}</td>
@@ -308,24 +328,69 @@ function Ajouter() {
         <td class="p-2 text-center">${Information.Date}</td>
         <td class="p-2 text-center">${Information.Email}</td>
         <td class="p-2 text-center">${Information.Adresse}</td>
-        <td class="p-2 text-center">
+        <td class="p-2 text-center flex justify-center items-center gap-2">
         <i class='bx bxs-edit-alt cursor-pointer scale-125 text-green-500'onclick='Modifier(this)'></i>
         <i class='bx bx-x cursor-pointer scale-150 text-red-500'onclick='Suprimmer(this)'></i>
         </td>
         `
         table.appendChild(tr_2);
 
-        //Clear-all-input
-        input_prenom.value = '';
-        input_nom.value = '';
-        input_age.value = '';
-        input_date.value = '';
-        input_email.value = '';
-        textarea_adresse.value = '';
+        Clear();
     }
-}
+};
 
 //Function-Suprimmer
 function Suprimmer(div) {
-    div.parentNode.parentNode.remove()
-}
+    div.parentNode.parentNode.remove();
+};
+
+// Function-Modifier
+function Modifier(div) {
+    // cells donne toutes les balises <td> dans la balise <tr>
+    const colmun = div.parentNode.parentNode.cells;
+
+    input_prenom.value = colmun[0].textContent;
+    input_nom.value = colmun[1].textContent;
+    input_age.value = colmun[2].textContent;
+    select_sexe.value = colmun[3].textContent;
+    input_date.value = colmun[4].textContent;
+    input_email.value = colmun[5].textContent;
+    textarea_adresse.value = colmun[6].textContent;
+
+    Button.textContent = 'Modifier';
+
+    Button.removeEventListener('click', Ajouter);
+    Button.addEventListener('click', update);
+
+    function update() {
+        if (input_age.value < 18) {
+            alert('Vous etes Mineur');
+        }
+        else {
+            colmun[0].textContent = input_prenom.value;
+            colmun[1].textContent = input_nom.value;
+            colmun[2].textContent = input_age.value;
+            colmun[3].textContent = select_sexe.value;
+            colmun[4].textContent = input_date.value;
+            colmun[5].textContent = input_email.value;
+            colmun[6].textContent = textarea_adresse.value;
+
+            Button.textContent = 'Ajouter';
+
+            Button.removeEventListener('click', update);
+            Button.addEventListener('click', Ajouter);
+
+            Clear();
+        }
+    };
+};
+
+//Function-Clear
+function Clear() {
+    input_prenom.value = '';
+    input_nom.value = '';
+    input_age.value = '';
+    input_date.value = '';
+    input_email.value = '';
+    textarea_adresse.value = '';
+};
