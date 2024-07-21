@@ -231,18 +231,27 @@ body.appendChild(section);
 section.appendChild(div_card_1);
 section.appendChild(div_card_2);
 
-//Default-Information
-function user(){
+//Default-Information-Serveur
+var serveur = new XMLHttpRequest();
+serveur.open('GET', 'http://localhost:3000/Information', true);
+serveur.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+        Information_Default(JSON.parse(this.responseText));
+    }
+}
+serveur.send()
+
+function Information_Default(div) {
     const tr_user = document.createElement('tr');
     tr_user.innerHTML =
         `
-    <td class="p-2 text-center">Ahmed</td>
-    <td class="p-2 text-center">Hariri</td>
-    <td class="p-2 text-center">18</td>
-    <td class="p-2 text-center">Masculin</td>
-    <td class="p-2 text-center">01/05/2006</td>
-    <td class="p-2 text-center">AhmedHariri58@gmail.com</td>
-    <td class="p-2 text-center">Rabat</td>
+    <td class="p-2 text-center">${div.Nom}</td>
+    <td class="p-2 text-center">${div.Prenom}</td>
+    <td class="p-2 text-center">${div.Age}</td>
+    <td class="p-2 text-center">${div.Sexe}</td>
+    <td class="p-2 text-center">${div.Date}</td>
+    <td class="p-2 text-center">${div.Email}</td>
+    <td class="p-2 text-center">${div.Adresse}</td>
     <td class="p-2 text-center flex justify-center items-center gap-2">
     <i class='bx bxs-edit-alt cursor-pointer scale-125 text-green-500''></i>
     <i class='bx bx-x cursor-pointer scale-150 text-red-500''></i>
@@ -250,7 +259,6 @@ function user(){
     `
     table.appendChild(tr_user);
 }
-user();
 
 //Function-Ajouter
 function Ajouter() {
