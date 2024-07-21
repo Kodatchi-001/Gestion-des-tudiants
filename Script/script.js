@@ -231,7 +231,9 @@ body.appendChild(section);
 section.appendChild(div_card_1);
 section.appendChild(div_card_2);
 
-//Default-Information-Serveur
+//Default-Information-Serveur(XMLHttpRequest)
+
+/*
 var serveur = new XMLHttpRequest();
 serveur.open('GET', 'http://localhost:3000/Information', true);
 serveur.onreadystatechange = function () {
@@ -239,7 +241,17 @@ serveur.onreadystatechange = function () {
         Information_Default(JSON.parse(this.responseText));
     }
 }
-serveur.send()
+serveur.send();
+*/
+
+//Default-Information-Serveur(Fetch)
+fetch('http://localhost:3000/Information')
+.then(reponse => {
+    return reponse.json()
+})
+.then(data =>{
+    Information_Default(data)
+})
 
 function Information_Default(div) {
     const tr_user = document.createElement('tr');
